@@ -36,7 +36,7 @@ function listAlbums(albumsArr) {
     let cardContainer = document.createElement('div');
     cardContainer.classList.add('card-container');
 
-    let cardTitle = document.createElement('h4');
+    let cardTitle = document.createElement('h6');
     cardTitle.classList.add('card-title');
     cardTitle.innerHTML = item.collectionName;
 
