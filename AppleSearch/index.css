@@ -1,0 +1,83 @@
+* {
+  font-family: Arial;
+  padding: 0;
+  margin: 0;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}
+
+.top-header {
+  background-color: #018080;
+}
+
+.header-nav {
+  padding: 1rem 20%;
+}
+
+.searchContainer {
+  display: inline-flex;
+  flex: 1 1 300px;
+  border: none;
+  border-radius: 25px;
+  overflow: hidden;
+}
+
+.searchIcon {
+  background-color: white;
+  color: #777;
+  padding: 0.5rem;
+}
+
+.searchBox {
+  border: 0;
+  padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+  flex: 1;
+}
+
+.count {
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.results {
+  padding: 0 2rem;
+}
+
+.albums-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+/* card styling */
+.album-card {
+  /* Add shadows to create the "card" effect */
+  border-radius: 5px;
+  border: solid #666 1px;
+  box-sizing: border-box;
+  flex-grow: 1;
+  flex-shrink: 1;
+  margin: 1em 1em;
+  text-align: center;
+  width: 150px;
+  padding: 5px;
+}
+
+.album-cover {
+  width: 100%;
+}
+
+.card-container {
+  padding: 5px;
+}
+
+.card-title {
+  text-overflow: clip;
+  font-size: 1rem;
+}
+/* card styling */
