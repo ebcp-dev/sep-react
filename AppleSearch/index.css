@@ -60,7 +60,7 @@ nav {
   border-radius: 5px;
   border: solid #666 1px;
   box-sizing: border-box;
-  flex-grow: 1;
+  flex-grow: 0;
   flex-shrink: 1;
   margin: 1em 1em;
   text-align: center;
