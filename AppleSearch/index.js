@@ -3,7 +3,7 @@ function getAlbums(e) {
 
   const searchQuery = document.getElementById('searchQuery').value;
 
-  const searchUrl = `https://itunes.apple.com/search?term=${searchQuery}&media=music&entity=album&attribute=artistTerm&limit=50`;
+  const searchUrl = `https://itunes.apple.com/search?term=${searchQuery}&media=music&entity=album&attribute=artistTerm&limit=200`;
 
   fetchJsonp(`${searchUrl}`)
     .then((response) => {
@@ -25,26 +25,45 @@ function displayCounter(count, query) {
 }
 
 function listAlbums(albumsArr) {
+  let results = document.getElementById('albums-list');
+
+  results.innerHTML = '';
   albumsArr.forEach(function (item) {
-    let albumCard = document.createElement('article');
-    albumCard.classList.add('album-card');
+    let albumCard = `
+    <article class="album-card" id="${item.collectionId}">
+      <img class="album-cover" src="${item.artworkUrl60}">
+      <div class="card-container">
+        <h6 class="card-title">${item.collectionName}</h6>
+      </div>
+    </article>
+    `;
+    
+    results.insertAdjacentHTML('beforeend', albumCard);
 
-    let albumImg = document.createElement('img');
-    albumImg.classList.add('album-cover');
-    albumImg.src = item.artworkUrl60;
+    document.getElementById(`${item.collectionId}`).onclick = () => {
+      let myWindow = window.open("Release date", "MsgWindow", "width=200, height=200");
 
-    let cardContainer = document.createElement('div');
-    cardContainer.classList.add('card-container');
-
-    let cardTitle = document.createElement('h6');
-    cardTitle.classList.add('card-title');
-    cardTitle.innerHTML = item.collectionName;
-
-    cardContainer.appendChild(cardTitle);
-
-    albumCard.appendChild(albumImg);
-    albumCard.appendChild(cardContainer);
-
-    document.getElementById('albums-list').appendChild(albumCard);
+      myWindow.document.write(`
+        <p>This album was released on: ${item.releaseDate}</p>
+        <button id="btn-close">Close window</button>
+      `)
+      
+      myWindow.document.getElementById('btn-close').addEventListener('click', () => {
+        myWindow.close();
+      });
+    }
   })
+}
+
+function releaseDateWindow(releaseDate) {
+  let myWindow = window.open("Release date", "MsgWindow", "width=200, height=200");
+
+  myWindow.document.write(`
+    <p>This album was released on: ${releaseDate}</p>
+    <button id="btn-close">Close window</button>
+  `)
+  
+  myWindow.document.getElementById('btn-close').addEventListener('click', () => {
+    myWindow.close();
+  });
 }
