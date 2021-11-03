@@ -10,9 +10,9 @@ function getAlbums(e) {
       return response.json();
     })
     .then(json => {
-      console.log(json)
-      displayCounter(json.resultCount, searchQuery)
-      listAlbums(json.results)
+      console.log(json);
+      displayCounter(json.resultCount, searchQuery);
+      listAlbums(json.results);
     })
     .catch(error => {
       return error;
@@ -25,9 +25,9 @@ function displayCounter(count, query) {
 }
 
 function listAlbums(albumsArr) {
-  let results = document.getElementById('albums-list');
+  let albumsList = document.getElementById('albumsList');
 
-  results.innerHTML = '';
+  albumsList.innerHTML = '';
   albumsArr.forEach(function (item) {
     let albumCard = `
     <article class="album-card" id="${item.collectionId}">
@@ -38,32 +38,20 @@ function listAlbums(albumsArr) {
     </article>
     `;
     
-    results.insertAdjacentHTML('beforeend', albumCard);
+    albumsList.insertAdjacentHTML('beforeend', albumCard);
 
     document.getElementById(`${item.collectionId}`).onclick = () => {
-      let myWindow = window.open("Release date", "MsgWindow", "width=200, height=200");
+      let myWindow = window.open("Release date", "MsgWindow", "width=400, height=400");
 
       myWindow.document.write(`
+        <p>ID: ${item.collectionId}</p>
         <p>This album was released on: ${item.releaseDate}</p>
         <button id="btn-close">Close window</button>
-      `)
+      `);
       
-      myWindow.document.getElementById('btn-close').addEventListener('click', () => {
+      myWindow.document.getElementById('btn-close').onclick = () => {
         myWindow.close();
-      });
+      };
     }
-  })
-}
-
-function releaseDateWindow(releaseDate) {
-  let myWindow = window.open("Release date", "MsgWindow", "width=200, height=200");
-
-  myWindow.document.write(`
-    <p>This album was released on: ${releaseDate}</p>
-    <button id="btn-close">Close window</button>
-  `)
-  
-  myWindow.document.getElementById('btn-close').addEventListener('click', () => {
-    myWindow.close();
   });
 }
