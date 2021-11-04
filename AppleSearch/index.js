@@ -26,15 +26,12 @@ function displayCounter(count, query) {
 
 function listAlbums(albumsArr) {
   let albumsList = document.getElementById('albumsList');
-
   albumsList.innerHTML = '';
-  albumsArr.forEach(function (item) {
+  albumsArr.forEach((item) => {
     let albumCard = `
     <article class="album-card" id="${item.collectionId}">
       <img class="album-cover" src="${item.artworkUrl60}">
-      <div class="card-container">
-        <h6 class="card-title">${item.collectionName}</h6>
-      </div>
+      <h6 class="card-title">${item.collectionName}</h6>
     </article>
     `;
     
@@ -43,9 +40,16 @@ function listAlbums(albumsArr) {
     document.getElementById(`${item.collectionId}`).onclick = () => {
       let myWindow = window.open("Release date", "MsgWindow", "width=400, height=400");
 
+      let releaseDate = new Date(item.releaseDate);
+      let releaseMonth = releaseDate.toLocaleString('default', { month: 'long' })
+
       myWindow.document.write(`
+        <head>
+        <title>${item.collectionName}</title>
+        </head>
         <p>ID: ${item.collectionId}</p>
-        <p>This album was released on: ${item.releaseDate}</p>
+        <p>Artist: ${item.artistName}</p>
+        <p>This album was released on: ${releaseMonth} ${releaseDate.getDate()}, ${releaseDate.getFullYear()}</p>
         <button id="btn-close">Close window</button>
       `);
       

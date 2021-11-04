@@ -4,6 +4,7 @@
   margin: 0;
 }
 
+/* top navbar */
 nav {
   display: flex;
   justify-content: center;
@@ -37,21 +38,25 @@ nav {
   padding: 0.5rem 0.5rem 0.5rem 0.5rem;
   flex: 1;
 }
+/* top navbar */
 
+/* content layout */
 .count {
   text-align: center;
   padding: 2rem 0;
 }
 
-.results {
+.divider {
   margin: 0 10rem;
 }
 
 .albums-list {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  flex-flow: row wrap;
+  margin: 0 10em;
+  justify-content: space-around;
 }
+/* content layout */
 
 /* card styling */
 .album-card {
@@ -59,20 +64,27 @@ nav {
   border-radius: 5px;
   border: solid #666 1px;
   box-sizing: border-box;
-  flex-grow: 0;
-  flex-shrink: 1;
-  margin: 1em 1em;
   text-align: center;
-  width: 100px;
   padding: 5px;
+  margin: 10px 5px;
+  flex: 1 0 auto;
+  width: 100px;
+  max-width: 100px;
 }
 
 .album-cover {
   width: 100%;
 }
 
-.card-container {
-  padding: 5px;
-  word-wrap: break-word;
+@media screen and (min-width: 40em) {
+  .card {
+    max-width: calc(50% - 1em);
+  }
+}
+
+@media screen and (min-width: 60em) {
+  .card {
+    max-width: calc(25% - 1em);
+  }
 }
 /* card styling */
